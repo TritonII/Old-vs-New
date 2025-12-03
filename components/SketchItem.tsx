@@ -7,7 +7,8 @@ interface SketchItemProps {
   isConnected: boolean;
   onPointMouseDown?: (e: React.MouseEvent) => void;
   onPointMouseUp?: (e: React.MouseEvent) => void;
-  pointRef?: React.RefObject<HTMLDivElement>;
+  onTouchStart?: (e: React.TouchEvent) => void;
+  pointRef?: React.Ref<HTMLDivElement>;
 }
 
 export const SketchItem: React.FC<SketchItemProps> = ({ 
@@ -16,6 +17,7 @@ export const SketchItem: React.FC<SketchItemProps> = ({
   isConnected, 
   onPointMouseDown, 
   onPointMouseUp,
+  onTouchStart,
   pointRef 
 }) => {
   const isLeft = side === 'left';
@@ -42,6 +44,7 @@ export const SketchItem: React.FC<SketchItemProps> = ({
           ref={pointRef}
           onMouseDown={onPointMouseDown}
           onMouseUp={onPointMouseUp}
+          onTouchStart={onTouchStart}
           className={`
             w-4 h-4 rounded-full border-2 cursor-crosshair transition-all duration-200
             ${isConnected ? 'bg-blue-600 border-blue-800 scale-110' : 'bg-white border-gray-800 hover:scale-125 hover:bg-gray-200'}
