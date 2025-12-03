@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PaperBackground } from './components/PaperBackground';
 import { SketchConnect } from './components/SketchConnect';
 import { Connection, FutureForecast } from './types';

@@ -102,13 +102,13 @@ const generateFallbackForecasts = (connections: Connection[]): FutureForecast[] 
 
 // --- MAIN AI GENERATOR ---
 export const generateFutureForecasts = async (connections: Connection[]): Promise<FutureForecast[]> => {
-  if (!process.env.API_KEY) {
+  if (!import.meta.env.VITE_API_KEY) {
     console.warn("No API_KEY found, using fallback matrix.");
     return generateFallbackForecasts(connections);
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
     
     // Prepare the context for the model
     const pairings = connections.map(conn => {
@@ -152,7 +152,7 @@ export const generateFutureForecasts = async (connections: Connection[]): Promis
       }
     });
 
-    const json = JSON.parse(response.text);
+    const json = JSON.parse(response.text ?? '[]');
 
     // Hydrate names back into the result
     return json.map((item: any) => {

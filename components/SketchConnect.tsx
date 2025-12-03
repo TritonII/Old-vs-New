@@ -122,7 +122,6 @@ export const SketchConnect: React.FC<SketchConnectProps> = ({ connections, onCon
     if (!dragStart) return;
 
     const touch = e.changedTouches[0];
-    const endElement = document.elementFromPoint(touch.clientX, touch.clientY);
 
     // Find if the end element is within a connection point or the item itself
     // We look for the data-id attribute on the SketchItem container or point
